@@ -1,2 +1,2 @@
-FROM nginx
-COPY /home/hello /home/hello
+FROM ubuntu:latest
+RUN sudo apt-get install mysql

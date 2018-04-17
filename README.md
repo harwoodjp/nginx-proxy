@@ -19,3 +19,5 @@ docker exec -ti docker-nginx /bin/bash
 ## Launch process with docker-compose
 docker-compose up -d
 
+## Remove all containers
+docker ps -aq | xargs docker rm -f
