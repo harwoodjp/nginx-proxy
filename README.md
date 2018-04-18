@@ -21,3 +21,6 @@ docker-compose up -d
 
 ## Remove all containers
 docker ps -aq | xargs docker rm -f
+
+## Crontab to start docker-compose on reboot
+@reboot (sleep 30s ; cd /home/justin/nginx-proxy ; /usr/local/bin/docker-compose up --build -d )&

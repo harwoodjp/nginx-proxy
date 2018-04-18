@@ -13,6 +13,7 @@ services:
       - ttrss
     
   db:
+    restart: always
     image: mysql:5.7
     ports:
       - "3307:3306"
@@ -24,6 +25,7 @@ services:
       - ttrss
 
   php:
+    restart: always
     build: .
     # depends_on:
     #   - db    
