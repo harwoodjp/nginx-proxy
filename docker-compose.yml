@@ -12,17 +12,18 @@ services:
     networks:
       - ttrss
     
-  db:
-    restart: always
-    image: mysql:5.7
-    ports:
-      - "3307:3306"
-    expose:
-      - "3306"
-    environment:
-      - secrets.env       
-    networks:
-      - ttrss
+  #db:
+    #restart: always
+    #image: mysql:5.7
+    #ports:
+      #- "3307:3306"
+    #expose:
+      #- "3306"
+    #environment:
+      #- secrets.env
+      #- MYSQL_RANDOM_ROOT_PASSWORD=yes       
+    #networks:
+      #- ttrss
 
   php:
     restart: always
