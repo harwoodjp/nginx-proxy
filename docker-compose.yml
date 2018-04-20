@@ -8,34 +8,49 @@ services:
       - "80:80"
     volumes:
       - "/var/www/:/var/www"
-      - "./nginx:/etc/nginx/conf.d"
+      - "./services/nginx:/etc/nginx/conf.d"
     networks:
-      - ttrss
+      - marx
     
-  #db:
-    #restart: always
-    #image: mysql:5.7
-    #ports:
-      #- "3307:3306"
-    #expose:
-      #- "3306"
-    #environment:
-      #- secrets.env
-      #- MYSQL_RANDOM_ROOT_PASSWORD=yes       
-    #networks:
-      #- ttrss
+  # db:
+  #   restart: always
+  #   image: mysql:5.7
+  #   ports:
+  #     - "3307:3306"
+  #   expose:
+  #     - "3306"
+  #   environment:
+  #     - secrets.env
+  #     - MYSQL_RANDOM_ROOT_PASSWORD=yes       
+  #   networks:
+  #     - ttrss
 
   php:
     restart: always
-    build: .
+    build:
+      context: ./services/php
     # depends_on:
     #   - db    
     volumes:
       - "/var/www/:/var/www"
     networks:
-      - ttrss
-  
+      - marx
+
+  node:
+    restart: always
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
+    build:
+      context: ./services/node
+    volumes:
+      - "/var/www/:/var/www"
+    working_dir: '/var/www/likeadiv.com/plato'            
+    networks:
+      - marx      
+
 networks:
-  ttrss:
+  marx:
     driver: bridge
 
